@@ -17,9 +17,7 @@ namespace Gateway.Controllers
         [HttpGet]
         public string Get()
         {
-            ImmuDB immuDB = new ImmuDB();
-            string result = immuDB.Read().Result;
-            return result;
+            return "Test";
         }
     }
 }
