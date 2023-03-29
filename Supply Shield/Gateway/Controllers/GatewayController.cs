@@ -4,12 +4,12 @@ namespace Gateway.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class GatewayController : ControllerBase
     {
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<GatewayController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public GatewayController(ILogger<GatewayController> logger)
         {
             _logger = logger;
         }
