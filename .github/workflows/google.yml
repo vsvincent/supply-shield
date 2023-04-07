@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: supply-shield_image
-      PROJECT_ID: OrganizationService
+      PROJECT_ID: supply-shield-381721
     steps:
     - name: Checkout
       uses: actions/checkout@v2
