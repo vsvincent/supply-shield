@@ -1,19 +1,19 @@
 {
   "profiles": {
-    "Gateway": {
+    "OrganizationService": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "supplyshield",
+      "launchUrl": "organization",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7058;http://localhost:5032"
+      "applicationUrl": "https://localhost:7037;http://localhost:5268"
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "supplyshield",
+      "launchUrl": "organization",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -21,7 +21,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/supplyshield",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/organization",
       "publishAllPorts": true,
       "useSSL": true
     }
@@ -31,8 +31,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:55603",
-      "sslPort": 44321
+      "applicationUrl": "http://localhost:32952",
+      "sslPort": 44352
     }
   }
 }
