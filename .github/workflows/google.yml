@@ -18,10 +18,8 @@ jobs:
         service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
         project_id: ${{ env.PROJECT_ID }}
         export_default_credentials: true
-    - name: Check directory
-      run: ls
     - name: Build Docker Image
-      run: docker build -t $IMAGE_NAME:latest .
+      run: docker build -t $IMAGE_NAME:latest ./OrganizationService
     - name: Configure Docker Client
       run: |-
         gcloud auth configure-docker --quiet
