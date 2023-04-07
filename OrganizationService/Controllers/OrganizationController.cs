@@ -2,10 +2,12 @@ using Amazon.QLDB.Driver;
 using Amazon.QLDBSession;
 using Amazon.Runtime;
 using Amazon.Runtime.CredentialManagement;
+using Google.Cloud.SecretManager.V1;
 using Microsoft.AspNetCore.Mvc;
 using OrganizationService.Models;
 using OrganizationService.Repository;
 using OrganizationService.Services;
+using OrganizationService.Utils;
 
 namespace OrganizationService.Controllers
 {
@@ -16,11 +18,13 @@ namespace OrganizationService.Controllers
 
         private readonly ILogger<OrganizationController> _logger;
         private readonly IOrganizationService _organizationService;
+        private readonly IGoogleSecretManager _secretManager;
 
-        public OrganizationController(ILogger<OrganizationController> logger, IOrganizationService organizationService)
+        public OrganizationController(ILogger<OrganizationController> logger, IOrganizationService organizationService, IGoogleSecretManager secretManager)
         {
             _logger = logger;
             _organizationService = organizationService;
+            _secretManager = secretManager;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
