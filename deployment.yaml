@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deploy
+  namespace: example
+  labels:
+    app: OrganizationService
+  annotations:
+spec:
+  selector:
+    matchLabels:
+      app: OrganizationService
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: OrganizationService
+    spec:
+      containers:
+      - name: OrganizationService
+        image: $IMAGE_NAME:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: config-volume
+          mountPath: /configs/
+      volumes:
+      - name: config-volume
+        configMap:
+          name: example-config
