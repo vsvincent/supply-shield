@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: OrganizationService
+  name: organization-service
   namespace: example
   labels:
-    app: OrganizationService
+    app: organization-service
   annotations:
 spec:
   selector:
     matchLabels:
-      app: OrganizationService
+      app: organization-service
   replicas: 2
   strategy:
     type: RollingUpdate
@@ -19,10 +19,10 @@ spec:
   template:
     metadata:
       labels:
-        app: OrganizationService
+        app: organization-service
     spec:
       containers:
-      - name: OrganizationService
+      - name: organization-service
         image: $IMAGE_NAME:latest
         imagePullPolicy: Always
         #ports:

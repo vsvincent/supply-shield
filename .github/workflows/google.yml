@@ -10,6 +10,7 @@ jobs:
       IMAGE_NAME: organization-service
       PROJECT_ID: supply-shield-381721
       DEPLOYMENT_NAME: supply-shield
+      LOCATION: europe-central2
     steps:
     - name: Checkout
       uses: actions/checkout@v2
