@@ -29,7 +29,14 @@ namespace OrganizationService.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _organizationService.GetAll());
+            try
+            {
+                return Ok(await _organizationService.GetAll());
+            }
+            catch (Exception e) //TODO Remove for production
+            {
+                return Ok(e.Message);
+            }
         }
         [HttpPost]
         public async Task<IActionResult> AddOrganization([FromBody] Organization organization)
