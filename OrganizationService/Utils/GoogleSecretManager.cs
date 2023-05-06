@@ -5,7 +5,7 @@ namespace OrganizationService.Utils
 {
     public class GoogleSecretManager : IGoogleSecretManager
     {
-        private readonly string projectId = "supply-shield-381721";
+        private readonly string projectId = "506661741186";
         public string KeyId { get; private set; } = "QLDBKey";
         public string AccessId { get; private set; } = "QLDBAccess";
         public Secret GetSecretMetadata(string secretId)
