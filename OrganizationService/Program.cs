@@ -4,6 +4,8 @@ using OrganizationService.Repository;
 using OrganizationService.Services;
 using OrganizationService.Utils;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +16,16 @@ builder.Services.AddScoped<IQldbContext, QldbContext>();
 builder.Services.AddScoped<IGoogleSecretManager, GoogleSecretManager>();
 
 builder.Services.AddControllers();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.WithOrigins("https://supply-shield-381721.web.app",
+                                              "https://supply-shield-381721.firebaseapp.com");
+                      });
+});
 
 var app = builder.Build();
 

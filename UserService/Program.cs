@@ -1,14 +1,8 @@
-using FirebaseAdmin;
-using Gateway.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-
-builder.Services.AddSingleton(FirebaseApp.Create());
-builder.Services.AddFirebaseAuthentication();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
