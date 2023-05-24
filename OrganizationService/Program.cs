@@ -15,23 +15,24 @@ builder.Services.AddScoped<IOrganization, Organization>();
 builder.Services.AddScoped<IQldbContext, QldbContext>();
 builder.Services.AddScoped<IGoogleSecretManager, GoogleSecretManager>();
 
-builder.Services.AddControllers();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       builder =>
                       {
-                          builder.WithOrigins("https://supply-shield-381721.web.app",
+                          builder.WithOrigins("*",
+                                              "https://supply-shield-381721.web.app",
                                               "https://supply-shield-381721.firebaseapp.com");
                       });
 });
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseCors();
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 
