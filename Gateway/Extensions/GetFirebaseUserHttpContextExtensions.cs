@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace FirebaseAdminAuthentication.DependencyInjection.Extensions
+namespace Gateway.Extensions
 {
     public static class GetFirebaseUserHttpContextExtensions
     {

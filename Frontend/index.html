@@ -26,22 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="module">
         console.log("ajax");
-        $.ajax({
-    type: "GET",
-    url: "https://organization-service-cmlmuykhqq-lm.a.run.app/organization",
-    dataType: 'json',
-    contentType: "application/json",
-    /*headers: {
-        "Cache-Control": "no-cache",
-        "Authorization": "Bearer " + access_token,
-    },*/
-    data: {}, 
-    success: function(resp){
-        console.log(resp)
-    }, 
-    error: function(error){
-    }    
-});
+        
     </script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
@@ -76,6 +61,7 @@
         const signUpButton = document.querySelector("#signUpButton");
         const signInButton = document.querySelector("#signInButton");
         const signOutButton = document.querySelector("#signOutButton");
+        const gatewayBaseUrl = "https://gateway-cmlmuykhqq-lm.a.run.app/"
 
         secretContent.style.display = 'none';
 
@@ -100,10 +86,27 @@
             const signInPassword = userPassword.value;
             signInWithEmailAndPassword(auth, signInEmail, signInPassword)
             .then((userCredential) => {
-                const user = userCredential.user;
                 console.log("user");
                 console.log(userCredential);
                 alert("You have signed in successfully!");
+                $.ajax({
+    type: "GET",
+    url: gatewayBaseUrl + "getweatherforecast",
+    dataType: 'json',
+    contentType: "application/json",
+    headers: {
+        "Cache-Control": "no-cache",
+        "Authorization": "Bearer " + userCredential.user.accessToken,
+    },
+    data: {}, 
+    success: function(resp){
+        console.log("ashjdjadjhs");
+        console.log(resp);
+    }, 
+    error: function(error){
+        console.log(error);
+    }    
+});
             })
             .catch((error) => {
                 const errorCode = error.code;

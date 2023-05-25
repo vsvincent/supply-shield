@@ -21,6 +21,7 @@ builder.Services.AddCors(options =>
                       {
                           builder.AllowAnyHeader();
                           builder.AllowAnyMethod();
+                          //builder.AllowAnyOrigin
                           builder.WithOrigins("https://supply-shield-381721.web.app",
                                               "https://supply-shield-381721.firebaseapp.com");
                       });
@@ -33,9 +34,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
 app.UseCors(MyAllowSpecificOrigins);
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
