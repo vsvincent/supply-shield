@@ -121,7 +121,7 @@ jobs:
             # NOTE: If using a pre-built image, update the image name here
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.USER_SERVICE }}/${{ env.USER_SERVICE }}:${{ github.sha }}
       - name: Deploy Incident Service to Cloud Run
-        id: deploy-user-service
+        id: deploy-incident-service
         uses: google-github-actions/deploy-cloudrun@v0
         with:
           service: ${{ env.USER_SERVICE }}
