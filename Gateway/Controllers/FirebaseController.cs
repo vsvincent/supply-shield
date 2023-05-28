@@ -7,16 +7,16 @@ namespace Gateway.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class FirebaseController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<FirebaseController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public FirebaseController(ILogger<FirebaseController> logger)
         {
             _logger = logger;
         }
