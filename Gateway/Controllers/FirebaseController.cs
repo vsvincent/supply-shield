@@ -9,11 +9,6 @@ namespace Gateway.Controllers
     [Route("[controller]")]
     public class FirebaseController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
         private readonly ILogger<FirebaseController> _logger;
 
         public FirebaseController(ILogger<FirebaseController> logger)
@@ -21,7 +16,7 @@ namespace Gateway.Controllers
             _logger = logger;
         }
         [Authorize]
-        [HttpGet("GetWeatherForecast")]
+        [HttpGet]
         public IActionResult Get()
         {
             FirebaseUser user = HttpContext.GetFirebaseUser();
