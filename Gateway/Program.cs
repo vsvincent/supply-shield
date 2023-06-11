@@ -1,5 +1,6 @@
 using FirebaseAdmin;
 using Gateway.Extensions;
+using Google.Apis.Auth.OAuth2;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -9,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton(FirebaseApp.Create());
+builder.Services.AddSingleton(FirebaseApp.Create(new AppOptions
+{
+    Credential = GoogleCredential.GetApplicationDefault(),
+    ProjectId = "supply-shield-381721"
+}));
 builder.Services.AddFirebaseAuthentication();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
