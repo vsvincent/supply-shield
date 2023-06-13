@@ -31,14 +31,14 @@ namespace IncidentService.Service
             _factory.Uri = new Uri("amqp://admin:password@34.118.82.210:5672/");
             _connection = _factory.CreateConnection();
             _channel = _connection.CreateModel();
+            Listen(_requestQueue);
         }
         public static async void Listen(string queue)
         {
-            _channel.QueueDeclare(queue);
 
             var queueName = _channel.QueueDeclare(
                     queue: queue,
-                    durable: false,
+                    durable: true,
                     exclusive: false,
                     autoDelete: false,
                     arguments: null
@@ -55,11 +55,16 @@ namespace IncidentService.Service
             };
 
             _channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
-            Console.WriteLine("Users Consuming");
+            Console.WriteLine("Consuming");
         }
 
         private static void HandleRequest(JObject request, string correlationId)
         {
+            if (request["type"] is null)
+            {
+                IIncident incident = JsonConvert.DeserializeObject<Incident>(request.ToString());
+                _incidentService.Add(incident);
+            }
             switch (request["type"].ToString())
             {
                 case "create":

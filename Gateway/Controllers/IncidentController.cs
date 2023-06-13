@@ -3,6 +3,9 @@ using Gateway.Models;
 using Gateway.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Text;
 
 namespace Gateway.Controllers
 {
@@ -24,10 +27,15 @@ namespace Gateway.Controllers
 
             return Ok(user);
         }
-        [HttpGet("test")]
-        public async Task<IActionResult> GetTest()
+        [HttpPost]
+        public async Task<IActionResult> Add()
         {
-            return Ok(await communicationService.GetItem<String>("wow"));
+            using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+            {
+                string requestBody = await reader.ReadToEndAsync();
+                JObject incident = JsonConvert.DeserializeObject<JObject>(requestBody);
+                return Ok(await communicationService.GetItem<JObject>(incident));
+            }
         }
     }
 }

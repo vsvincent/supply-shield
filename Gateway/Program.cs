@@ -1,12 +1,16 @@
 using FirebaseAdmin;
 using Gateway.Extensions;
+using Gateway.Services;
 using Google.Apis.Auth.OAuth2;
+using System.Collections.Generic;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IClientService, ClientService>();
+builder.Services.AddSingleton<IAuthorizationService, AuthorizationService>();
 
 builder.Services.AddControllers();
 

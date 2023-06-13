@@ -30,7 +30,6 @@
     </script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-        import { collection, doc, setDoc } from "firebase/firestore"; 
         import {
             getAuth,
             createUserWithEmailAndPassword,
@@ -63,6 +62,7 @@
         const auth = getAuth(app);
 
         const userEmail = document.querySelector("#userEmail");
+        const userRole = document.querySelector("#userEmail");
         const userPassword = document.querySelector("#userPassword");
         const authForm = document.querySelector("#authForm");
         const secretContent = document.querySelector("#secretContent");
@@ -75,11 +75,13 @@
 
         const userSignUp = async() => {
             const signUpEmail = userEmail.value;
+            const signUpRole= userRole.value;
             const signUpPassword = userPassword.value;
             createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user);
+                createOrUpdateUser(signUpEmail, signUpRole);
                 alert("Your account has been created!");
             })
             .catch((error) => {
@@ -108,7 +110,6 @@
     },
     data: {}, 
     success: function(resp){
-        console.log("ashjdjadjhs");
         console.log(resp);
     }, 
     error: function(error){

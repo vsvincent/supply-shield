@@ -9,7 +9,7 @@ namespace Gateway.Services
     public class CommunicationService : BackgroundService
     {
         private bool _isInitialized = false;
-        private ConnectionFactory _factory;
+        private ConnectionFactory _factory = new ConnectionFactory();
         private IConnection _connection;
         private IModel _channel;
         private readonly string _requestQueue = "incident-in";
@@ -24,7 +24,7 @@ namespace Gateway.Services
                 _channel = _connection.CreateModel();
                 _channel.QueueDeclare(
                     queue: _responseQueue,
-                    durable: false,
+                    durable: true,
                     exclusive: false,
                     autoDelete: false,
                     arguments: null
@@ -56,7 +56,7 @@ namespace Gateway.Services
             string responseQueueName =
                 _channel.QueueDeclare(
                     queue: _responseQueue,
-                    durable: false,
+                    durable: true,
                     exclusive: false,
                     autoDelete: false,
                     arguments: null

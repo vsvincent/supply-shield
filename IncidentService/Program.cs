@@ -33,6 +33,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
-
 CommunicationService.Initialize();
+
+app.Run();

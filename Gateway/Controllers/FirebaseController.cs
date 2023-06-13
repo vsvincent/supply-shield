@@ -23,8 +23,9 @@ namespace Gateway.Controllers
 
             return Ok(user);
         }
-        [HttpGet("test")]
-        public IActionResult GetTest()
+        [Authorize]
+        [HttpPost]
+        public IActionResult Add()
         {
             return Ok("This should be some cool text.");
         }
