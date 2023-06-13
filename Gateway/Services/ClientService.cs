@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using Google.Apis.Services;
+using System.Text;
 
 namespace Gateway.Services
 {
-    public class ClientService
+    public class ClientService : IClientService
     {
         private readonly HttpClient httpClient;
 
