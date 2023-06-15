@@ -4,7 +4,7 @@ using OrganizationService.Repository;
 using OrganizationService.Services;
 using OrganizationService.Utils;
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var AllowSpecificOrigins = "AllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,13 +17,13 @@ builder.Services.AddScoped<IGoogleSecretManager, GoogleSecretManager>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins,
+    options.AddPolicy(name: AllowSpecificOrigins,
                       builder =>
                       {
                           builder.AllowAnyHeader();
                           builder.AllowAnyMethod();
-                          builder.WithOrigins("https://supply-shield-381721.web.app",
-                                              "https://supply-shield-381721.firebaseapp.com");
+                          builder.AllowAnyOrigin();
+                          //builder.WithOrigins("https://gateway-cmlmuykhqq-lm.a.run.app");
                       });
 });
 
@@ -33,7 +33,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(AllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 
