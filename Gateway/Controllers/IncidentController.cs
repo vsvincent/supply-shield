@@ -35,6 +35,7 @@ namespace Gateway.Controllers
             using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
                 string requestBody = await reader.ReadToEndAsync();
+                _logger.LogInformation("Processing incident declaration request: " + requestBody);
                 JObject incident = JsonConvert.DeserializeObject<JObject>(requestBody);
                 return Ok(await communicationService.GetItem<JObject>(incident));
             }

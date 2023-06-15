@@ -18,6 +18,9 @@ const Admin = () => {
         localStorage.removeItem('userToken');
         window.location.reload(false);
     };
+    const handleNewIncident = () => {
+        navigate("./incident")
+    };
 
   useEffect(() => {
     console.log("useffect");
@@ -49,24 +52,25 @@ const Admin = () => {
     }, []);
 
   return (
-    <div>
+    <Box>
+        <Button onClick={handleSignOut}>Sign Out</Button>
+        <Button onClick={handleNewIncident}>Declare Incident</Button>
      <Accordion>
-      {items.map((item) => (
-        <AccordionItem key={item.id}>
-          <h2>
-            <AccordionButton>
-              <Box as="span" flex="1" textAlign="left">
-                {item.title}
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>{item.description}</AccordionPanel>
-        </AccordionItem>
-      ))}
+        {items.map((item) => (
+            <AccordionItem key={item.id}>
+            <h2>
+                <AccordionButton>
+                <Box as="span" flex="1" textAlign="left">
+                    Incident Type: {item.type}
+                </Box>
+                <AccordionIcon />
+                </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>Description: {item.description}</AccordionPanel>
+            </AccordionItem>
+        ))}
     </Accordion>
-<Button onClick={handleSignOut}>Sign Out</Button>
-</div>
+</Box>
   );
 };
 

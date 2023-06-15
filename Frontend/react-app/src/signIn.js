@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {initializeApp} from 'firebase/app';
 import {signInWithEmailAndPassword, getAuth} from 'firebase/auth';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { Input, Heading, Box, Center  } from '@chakra-ui/react'
+import { Input, Heading, Box, Center, Button  } from '@chakra-ui/react'
 
 // Initialize Firebase with your configuration
 const firebaseConfig = {
@@ -30,10 +30,16 @@ const SignIn = () => {
     try {
       var userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
+
+      var uid = await userCredential.user.uid
+      localStorage.setItem("userUid", uid);
+      console.log( "User uid: "+ localStorage.getItem("userUid"));
+
       var token = await userCredential.user.accessToken;
       setUserToken(token);
       localStorage.setItem("userToken", token);
       console.log( localStorage.getItem("userToken"));
+
     } catch (error) {
       console.log(error);
       // Handle sign-in error
@@ -42,7 +48,7 @@ const SignIn = () => {
   };
 
   return (
-    <Center w="90%">
+    <Box><Center w="90%">
       <Heading as="h2">Sign In</Heading>
       <form onSubmit={handleSignIn}>
         <label>
@@ -67,9 +73,9 @@ const SignIn = () => {
           />
         </label>
         <br />
-        <button type="submit">Sign In</button>
+        <Button type="submit">Sign In</Button>
       </form>
-    </Center >
+    </Center ></Box>
   );
 };
 
