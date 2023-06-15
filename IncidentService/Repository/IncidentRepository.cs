@@ -28,8 +28,8 @@ namespace IncidentService.Repository
             ionIncident.SetField("Id", valueFactory.NewString(Guid.NewGuid().ToString()));
             ionIncident.SetField("Type", valueFactory.NewString(incident.Type));
             ionIncident.SetField("Description", valueFactory.NewString(incident.Description));
-            ionIncident.SetField("User-Id", valueFactory.NewString(incident.UserId));
-            ionIncident.SetField("Organization-Id", valueFactory.NewString(incident.OrganizationId));
+            ionIncident.SetField("UserId", valueFactory.NewString(incident.UserId));
+            ionIncident.SetField("OrganizationId", valueFactory.NewString(incident.OrganizationId));
             ionIncident.SetField("Date", valueFactory.NewTimestamp(new Timestamp(DateTime.Now)));
             await _driver.GetDriver().Execute(async txn =>
             {
@@ -41,7 +41,7 @@ namespace IncidentService.Repository
         {
             IAsyncResult<Incident> result = await _driver.GetAsyncDriver().Execute(async txn =>
             {
-                return await txn.Execute(txn.Query<Incident>($"SELECT * FROM Incident WHERE \"Organization-Id\" = '{organizationId}'"));
+                return await txn.Execute(txn.Query<Incident>($"SELECT * FROM Incident WHERE \"OrganizationId\" = '{organizationId}'"));
             });
             return await result.ToListAsync();
         }

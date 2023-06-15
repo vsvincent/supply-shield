@@ -22,7 +22,7 @@ namespace IncidentService.Controllers
         {
             return Ok(await _incidentService.GetAll());
         }
-        [HttpGet("incident")]
+        [HttpGet]
         public async Task<IActionResult> Get(string organizationId)
         {
             return Ok(await _incidentService.Get(organizationId));
