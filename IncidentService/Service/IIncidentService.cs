@@ -6,5 +6,6 @@ namespace IncidentService.Service
     {
         public void Add(IIncident requestObject);
         public Task<IEnumerable<IIncident>> GetAll();
+        public Task<IEnumerable<IIncident>> Get(string organizationId);
     }
 }

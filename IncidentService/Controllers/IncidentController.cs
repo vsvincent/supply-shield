@@ -17,11 +17,15 @@ namespace IncidentService.Controllers
             _logger = logger;
             _incidentService = incidentService;
         }
-
         [HttpGet("all")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             return Ok(await _incidentService.GetAll());
+        }
+        [HttpGet("incident")]
+        public async Task<IActionResult> Get(string organizationId)
+        {
+            return Ok(await _incidentService.Get(organizationId));
         }
         [HttpPost]
         public async Task<IActionResult> AddIncident([FromBody] Incident incident)

@@ -15,6 +15,11 @@ namespace IncidentService.Service
             _incidentRepository.Add(incident);
         }
 
+        public async Task<IEnumerable<IIncident>> Get(string organizationId)
+        {
+            return await _incidentRepository.Get(organizationId);
+        }
+
         public async Task<IEnumerable<IIncident>> GetAll()
         {
             return await _incidentRepository.GetAll();

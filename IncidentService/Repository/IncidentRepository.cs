@@ -37,6 +37,15 @@ namespace IncidentService.Repository
             });
         }
 
+        public async Task<IEnumerable<IIncident>> Get(string organizationId)
+        {
+            IAsyncResult<Incident> result = await _driver.GetAsyncDriver().Execute(async txn =>
+            {
+                return await txn.Execute(txn.Query<Incident>($"SELECT * FROM Incident WHERE \"Organization-Id\" = '{organizationId}'"));
+            });
+            return await result.ToListAsync();
+        }
+
         public async Task<IEnumerable<IIncident>> GetAll()
         {
             IAsyncResult<Incident> result = await _driver.GetAsyncDriver().Execute(async txn =>
