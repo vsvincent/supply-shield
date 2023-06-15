@@ -20,9 +20,9 @@ const Admin = () => {
     };
 
   useEffect(() => {
-    console.log("wow");
+    console.log("useffect");
     const fetchData = async () => {
-        try {
+        try {console.log("fetch");
           const response = await fetch(gatewayBaseUrl + 'incident?organizationId=EVILSOAP', {
             method: 'GET',
             headers: {
@@ -42,9 +42,10 @@ const Admin = () => {
         } catch (error) {
           console.error(error);
         }
+        console.log("fetchdat");
       };
   
-      fetchData();
+       fetchData();
     }, []);
 
   return (
@@ -60,7 +61,7 @@ const Admin = () => {
               <AccordionIcon />
             </AccordionButton>
           </h2>
-          <AccordionPanel pb={4}>{item.content}</AccordionPanel>
+          <AccordionPanel pb={4}>{item.description}</AccordionPanel>
         </AccordionItem>
       ))}
     </Accordion>

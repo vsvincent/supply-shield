@@ -16,7 +16,7 @@ namespace Gateway.Controllers
         private readonly ILogger<IncidentController> _logger;
         private readonly CommunicationService communicationService = new CommunicationService();
         private readonly IClientService _clientService;
-        private readonly string _incidentServiceUrl = "https://localhost:7073/"; //"https://incident-service-cmlmuykhqq-lm.a.run.app";
+        private readonly string _incidentServiceUrl = "https://incident-service-cmlmuykhqq-lm.a.run.app/";
         public IncidentController(ILogger<IncidentController> logger, IClientService clientService)
         {
             _logger = logger;
