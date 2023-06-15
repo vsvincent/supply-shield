@@ -13,7 +13,7 @@ import {
 const Admin = () => {
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
-    const gatewayBaseUrl = "https://localhost:7114/"//"https://gateway-cmlmuykhqq-lm.a.run.app/"
+    const gatewayBaseUrl = "https://gateway-cmlmuykhqq-lm.a.run.app/"
     const handleSignOut = () => {
         localStorage.removeItem('userToken');
         window.location.reload(false);
