@@ -37,7 +37,7 @@ namespace Gateway.Controllers
                 string requestBody = await reader.ReadToEndAsync();
                 _logger.LogInformation("Processing incident declaration request: " + requestBody);
                 JObject incident = JsonConvert.DeserializeObject<JObject>(requestBody);
-                await communicationService.GetItem<JObject>(incident);
+                communicationService.GetItem<JObject>(incident);
                 return Ok("Incident created: " + incident["Description"]);
             }
         }
