@@ -45,7 +45,7 @@ const Admin = () => {
     
             if (response.ok) {
               const data = await response.json();
-              localStorage.setItem("organizationId", data.OrganizationId)
+              localStorage.setItem("organizationId", data.organizationId)
               console.log(data);
             } else {
               throw new Error('Request failed with status ' + response.status);
@@ -55,12 +55,10 @@ const Admin = () => {
           }
     };
 
-    fetchOrganizationId();
-
   useEffect(() => {
     const fetchData = async () => {
         try {
-          const response = await fetch(gatewayBaseUrl + 'incident?organizationId=EVILSOAP', {
+          const response = await fetch(gatewayBaseUrl + 'incident?organizationId='+localStorage.getItem('organizationId'), {
             method: 'GET',
             headers: {
               'Cache-Control': 'no-cache',
@@ -80,8 +78,8 @@ const Admin = () => {
           console.error(error);
         }
       };
-  
-       fetchData();
+        fetchOrganizationId();
+        fetchData();
     }, []);
 
   return (
@@ -92,7 +90,7 @@ const Admin = () => {
         <Button onClick={handleNewOrganization}>Create Organization</Button>
         <Button onClick={handleNewUser}>Create User</Button>
         </Stack>
-     <Accordion>
+     <Accordion id="IncidentList">
         {items.map((item) => (
             <AccordionItem key={item.id}>
             <h2>
