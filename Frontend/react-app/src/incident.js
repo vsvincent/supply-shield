@@ -35,6 +35,7 @@ const Incident = () => {
           body: JSON.stringify({
             Type:incidentType,
             UserId:localStorage.getItem("userUid"),
+            OrganizationID:localStorage.getItem("organizationId"),
             Description:incidentDescription
           }),
         });

@@ -45,6 +45,7 @@ const Admin = () => {
     
             if (response.ok) {
               const data = await response.json();
+              localStorage.setItem("organizationId", data.OrganizationId)
               console.log(data);
             } else {
               throw new Error('Request failed with status ' + response.status);

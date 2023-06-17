@@ -23,7 +23,7 @@ namespace Gateway.Controllers
         [Authorize]
         public async Task<IActionResult> GetByEmail(string email)
         {
-            return Ok(await _clientService.Get($"{_userServiceUrl}user?{email}"));
+            return Ok(await _clientService.Get($"{_userServiceUrl}user?email={email}"));
         }
         [HttpPost]
         public async Task<IActionResult> Set()
