@@ -21,6 +21,7 @@ namespace UserService.Controllers
         public async Task<IActionResult> Get(string email)
         {
             IUser user = await _userService.GetUser(email);
+            _logger.LogInformation("Getting user with email: " +  email);
             if (user == null)
             {
                 return NoContent();

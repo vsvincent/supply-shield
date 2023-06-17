@@ -6,12 +6,11 @@ namespace UserService.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly string project = "supply-shield-381721";
-        private readonly FirestoreDb db;
+        private readonly static string project = "supply-shield-381721";
+        private readonly FirestoreDb db = FirestoreDb.Create(project);
         private readonly ILogger<IUserRepository> _logger;
         public UserRepository(ILogger<IUserRepository> logger)
         {
-            FirestoreDb db = FirestoreDb.Create(project);
             _logger = logger;
         }
         public async Task<IUser> SetUser(IUser user)
