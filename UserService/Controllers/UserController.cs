@@ -17,9 +17,18 @@ namespace UserService.Controllers
             _logger = logger;
             _userService = userService;
         }
-
+        [HttpGet]
+        public async Task<IActionResult> Get(string email)
+        {
+            IUser user = await _userService.GetUser(email);
+            if (user == null)
+            {
+                return NoContent();
+            }
+            return Ok(await _userService.GetUser(email));
+        }
         [HttpPost]
-        public async Task<IActionResult> Get([FromBody] User user)
+        public async Task<IActionResult> Post([FromBody] User user)
         {
             return Ok(await _userService.SetUser(user));
         }

@@ -30,6 +30,8 @@ const SignIn = () => {
     try {
       var userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
+      
+      localStorage.setItem("email", email);
 
       var uid = await userCredential.user.uid
       localStorage.setItem("userUid", uid);
@@ -48,8 +50,9 @@ const SignIn = () => {
   };
 
   return (
-    <Box><Center w="90%">
+    <Box margin='10px'>
       <Heading as="h2">Sign In</Heading>
+    <Center w="90%" margin='10px'>
       <form onSubmit={handleSignIn}>
         <label>
           Email:
@@ -73,7 +76,7 @@ const SignIn = () => {
           />
         </label>
         <br />
-        <Button type="submit">Sign In</Button>
+        <Button type="submit" mt='10px'>Sign In</Button>
       </form>
     </Center ></Box>
   );

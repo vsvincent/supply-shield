@@ -1,13 +1,11 @@
 ﻿using Google.Api.Gax.ResourceNames;
 using Google.Cloud.SecretManager.V1;
 
-namespace IncidentService.Utils
+namespace UserService.Utils
 {
     public class GoogleSecretManager : IGoogleSecretManager
     {
         private readonly string projectId = "506661741186";
-        public string KeyId { get; private set; } = "QLDBKey";
-        public string AccessId { get; private set; } = "QLDBAccess";
         public Secret GetSecretMetadata(string secretId)
         {
             SecretManagerServiceClient client = SecretManagerServiceClient.Create();

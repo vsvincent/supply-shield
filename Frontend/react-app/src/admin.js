@@ -7,25 +7,58 @@ import {
     AccordionIcon,
     Box,
     Button, ButtonGroup,
+    Stack,
+    Heading,
   } from '@chakra-ui/react';
   import { useNavigate } from 'react-router-dom';
 
 const Admin = () => {
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
-    const gatewayBaseUrl = "https://gateway-cmlmuykhqq-lm.a.run.app/"
+    const gatewayBaseUrl = "https://gateway-cmlmuykhqq-lm.a.run.app/";
+
     const handleSignOut = () => {
         localStorage.removeItem('userToken');
         window.location.reload(false);
     };
+
     const handleNewIncident = () => {
         navigate("./incident")
     };
+    const handleNewOrganization = () => {
+        navigate("./organization")
+    };
+    const handleNewUser = () => {
+        navigate("./user")
+    };
+
+    const fetchOrganizationId = async () => {
+        try {
+            const response = await fetch(gatewayBaseUrl + 'user?email=' + (localStorage.getItem("email")), {
+              method: 'GET',
+              headers: {
+                'Cache-Control': 'no-cache',
+                Authorization: 'Bearer ' + localStorage.getItem('userToken'),
+                'Content-Type': 'application/json',
+              },
+            });
+    
+            if (response.ok) {
+              const data = await response.json();
+              console.log(data);
+            } else {
+              throw new Error('Request failed with status ' + response.status);
+            }
+          } catch (error) {
+            console.error(error);
+          }
+    };
+
+    fetchOrganizationId();
 
   useEffect(() => {
-    console.log("useffect");
     const fetchData = async () => {
-        try {console.log("fetch");
+        try {
           const response = await fetch(gatewayBaseUrl + 'incident?organizationId=EVILSOAP', {
             method: 'GET',
             headers: {
@@ -45,16 +78,19 @@ const Admin = () => {
         } catch (error) {
           console.error(error);
         }
-        console.log("fetchdat");
       };
   
        fetchData();
     }, []);
 
   return (
-    <Box>
+    <Box margin='10px'>
+        <Stack direction='row' mb="10px">
         <Button onClick={handleSignOut}>Sign Out</Button>
         <Button onClick={handleNewIncident}>Declare Incident</Button>
+        <Button onClick={handleNewOrganization}>Create Organization</Button>
+        <Button onClick={handleNewUser}>Create User</Button>
+        </Stack>
      <Accordion>
         {items.map((item) => (
             <AccordionItem key={item.id}>

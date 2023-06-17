@@ -52,7 +52,7 @@ const Incident = () => {
 
   return (
     <Box margin='10px'>
-      <Heading as="h2">Declare Supply Chain Incident</Heading>
+      <Heading as="h2">Create New Organization</Heading>
     <Center w="90%">
       <form onSubmit={postIncident}>
         <label>
