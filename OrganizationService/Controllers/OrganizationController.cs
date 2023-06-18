@@ -44,5 +44,11 @@ namespace OrganizationService.Controllers
             _organizationService.Add(organization);
             return Ok($"Created organization {organization.Name} with code {organization.Code}.");
         }
+        /*[HttpPost]
+        public async Task<IActionResult> LinkSupplierOrganization(string )
+        {
+            _organizationService.Add(organization);
+            return Ok($"Created organization {organization.Name} with code {organization.Code}.");
+        }*/
     }
 }

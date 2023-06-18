@@ -28,7 +28,7 @@ namespace Gateway.Controllers
         {
             return Ok(await _clientService.Get($"{_incidentServiceUrl}/incident?organizationId={organizationId}"));
         }
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Add()
         {

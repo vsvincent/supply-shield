@@ -119,7 +119,7 @@ namespace Gateway.Services
         }
         private async void TimeoutTask()
         {
-            var timeoutTask = Task.Delay(TimeSpan.FromSeconds(60));
+            var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
             if (await Task.WhenAny(timeoutTask) == timeoutTask)
             {
                 throw new TimeoutException("Timed out waiting for response");

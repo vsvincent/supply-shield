@@ -1,4 +1,4 @@
-using Gateway.Services;
+﻿using Gateway.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
@@ -9,12 +9,12 @@ namespace Gateway.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class OrganizationController : ControllerBase
     {
         private readonly IClientService _clientService;
-        private readonly ILogger<UserController> _logger;
-        private readonly string _userServiceUrl = "https://user-service-cmlmuykhqq-lm.a.run.app/";
-        public UserController(ILogger<UserController> logger, IClientService clientService)
+        private readonly ILogger<OrganizationController> _logger;
+        private readonly string _organizationServiceUrl = "https://organization-service-cmlmuykhqq-lm.a.run.app/";
+        public OrganizationController(ILogger<OrganizationController> logger, IClientService clientService)
         {
             _logger = logger;
             _clientService = clientService;
@@ -23,7 +23,7 @@ namespace Gateway.Controllers
         [Authorize]
         public async Task<IActionResult> GetByEmail(string email)
         {
-            return Ok(await _clientService.Get($"{_userServiceUrl}user?email={email}"));
+            return Ok(await _clientService.Get($"{_organizationServiceUrl}organization"));
         }
         [Authorize]
         [HttpPost]
@@ -32,7 +32,7 @@ namespace Gateway.Controllers
             using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
                 string requestBody = await reader.ReadToEndAsync();
-                return Ok(await _clientService.Post(_userServiceUrl, requestBody));
+                return Ok(await _clientService.Post(_organizationServiceUrl, requestBody));
             }
         }
     }
